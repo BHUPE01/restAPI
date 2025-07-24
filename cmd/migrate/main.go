@@ -12,7 +12,7 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		log.Fatal("please provide a migration direction")
+		log.Fatal("Please provide a migration direction: 'up' or 'down'")
 	}
 
 	direction := os.Args[1]
@@ -44,14 +44,13 @@ func main() {
 	switch direction {
 	case "up":
 		if err := m.Up(); err != nil && err != migrate.ErrNoChange {
-			log.Fatal((err))
+			log.Fatal(err)
 		}
 	case "down":
 		if err := m.Down(); err != nil && err != migrate.ErrNoChange {
-			log.Fatal((err))
+			log.Fatal(err)
 		}
-	
 	default:
-		log.Fatal("invalid fdirect")
+		log.Fatal("Invalid direction. Use 'up' or 'down'")
 	}
 }
